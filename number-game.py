@@ -43,6 +43,10 @@ while True:
         count = 1
         while int(guess) != number:
             print(f"Wrong guess! Try again, {name}")
+            if int(guess) > number:
+                print("(hint: your guess was greater than the number)")
+            elif int(guess) < number:
+                print("(hint: your guess was less than the number)")
             print("What number do you guess? The guess must be a number between 1 and 10")
             guess = input(">")
             guess = is_valid(guess)
@@ -53,11 +57,11 @@ while True:
 
         if bool(current_high_score) == False:
             current_high_score = count
-            print("New best score!")
+            print("New high score!")
 
         elif count < current_high_score:
             current_high_score = count
-            print("New best score!")
+            print("New high score!")
 
 
 
