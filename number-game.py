@@ -2,12 +2,17 @@ import random
 
 
 def is_valid(number):
-    while number.isdigit() == False:
-            print("The guess must be a whole number")
-            number = input(">")
-    while int(number) < 1 or int(number) > 10:
-        print("The guess must be between 1 and 10")
-        number = input(">")
+    while True:
+        if number.isdigit() == False:
+                print("The guess must be a whole number")
+                number = input(">")
+                continue
+        elif int(number) < 1 or int(number) > 10:
+                print("The guess must be between 1 and 10")
+                number = input(">")
+                continue
+        else:
+            break
     return number
 
 
@@ -26,17 +31,35 @@ while True:
         y_n = input(">")
 
     if y_n == "yes":
+        if bool(current_high_score) == False:
+            print("High score: N/A")
+        else:
+            print(f"High score: {str(current_high_score)}")
+
         print("What number do you guess? The guess must be a whole number between 1 and 10")
         guess = input(">")
         guess = is_valid(guess)
         
+        count = 1
         while int(guess) != number:
             print(f"Wrong guess! Try again, {name}")
             print("What number do you guess? The guess must be a number between 1 and 10")
             guess = input(">")
             guess = is_valid(guess)
+            count = count + 1
 
         print(f"You guessed it! the number was {str(number)}")
+        print(f"total guesses: {str(count)}")
+
+        if bool(current_high_score) == False:
+            current_high_score = count
+            print("New best score!")
+
+        elif count < current_high_score:
+            current_high_score = count
+            print("New best score!")
+
+
 
     elif y_n == "no":
         print(f"Bye, {name}!")
