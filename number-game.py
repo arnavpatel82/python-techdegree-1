@@ -4,7 +4,7 @@ import random
 def is_valid(number):
     while True:
         if number.isdigit() == False:
-                print("The guess must be a whole number")
+                print("The guess must be a whole, non-negative number")
                 number = input(">")
                 continue
         elif int(number) < 1 or int(number) > 10:
